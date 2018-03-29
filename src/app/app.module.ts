@@ -7,6 +7,10 @@ import { AppRoutingModule } from './app.routing';
 import { ProductService } from './services/product.service';
 import { CustomHttpService } from './services/customHttp.service';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';  // <-- #1 import module
+import { LocalStorageService } from './services/localstorage.service';
+import { LoginService } from './services/login.service';
+import { AuthGuard } from './module/admin/authguard';
 
 @NgModule({
   declarations: [
@@ -14,13 +18,17 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpModule, ReactiveFormsModule, FormsModule,
     HttpClientModule,
     NgbModule.forRoot(),
     AppRoutingModule
   ],
   providers: [CustomHttpService,
-    ProductService],
+    ProductService,
+    LocalStorageService,
+    LoginService,
+    AuthGuard
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
